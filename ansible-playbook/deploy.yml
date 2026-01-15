@@ -1,0 +1,119 @@
+- hosts: webserver
+  become: yes
+  vars:
+    app_name: eemi-m1-ci-cd
+    app_dir: /home/mathis.oudin-gcp/eemi-m1-ci-cd
+    app_port: 3002
+    repo_url: https://github.com/grintzdel/eemi-m1-ci-cd.git
+    repo_branch: main
+
+  tasks:
+    - name: Install git if not present
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+
+    - name: Verify if Node.js is installed
+      command: node --version
+      register: node_check
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Verify if pnpm is installed
+      command: pnpm --version
+      register: pnpm_check
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Install Node.js and pnpm via apt if not present
+      apt:
+        name:
+          - nodejs
+          - pnpm
+        state: present
+      when: node_check.rc != 0 or pnpm_check.rc != 0
+      ignore_errors: yes
+
+    - name: Verify if project directory exists
+      stat:
+        path: '{{ app_dir }}'
+      register: project_dir
+
+    - name: Delete project directory if owned by root
+      file:
+        path: '{{ app_dir }}'
+        state: absent
+      when: project_dir.stat.exists and project_dir.stat.pw_name == 'root'
+
+    - name: Create parent application directory if it doesn't exist
+      file:
+        path: '/home/mathis.oudin-gcp'
+        state: directory
+        owner: mathis.oudin-gcp
+        group: mathis.oudin-gcp
+        mode: '0755'
+
+    - name: Clone or update the Git repository
+      git:
+        repo: '{{ repo_url }}'
+        dest: '{{ app_dir }}'
+        version: '{{ repo_branch }}'
+        force: yes
+      become_user: mathis.oudin-gcp
+
+    - name: Ensure correct ownership of application directory
+      file:
+        path: '{{ app_dir }}'
+        owner: mathis.oudin-gcp
+        group: mathis.oudin-gcp
+        recurse: yes
+
+    - name: Verify the application directory
+      stat:
+        path: '{{ app_dir }}'
+      register: app_dir_stat
+
+    - name: Install PM2 globally
+      command: npm install -g pm2
+      args:
+        creates: /usr/local/bin/pm2
+
+    - name: Install dependencies
+      command: pnpm install --frozen-lockfile
+      args:
+        chdir: '{{ app_dir }}'
+      become_user: mathis.oudin-gcp
+
+    - name: Generate Nextjs build
+      command: pnpm run build
+      args:
+        chdir: '{{ app_dir }}'
+      become_user: mathis.oudin-gcp
+
+    - name: Stop existing PM2 application
+      command: pm2 delete {{ app_name }}
+      become_user: mathis.oudin-gcp
+      ignore_errors: yes
+
+    - name: Start the application with PM2
+      command: pm2 start pnpm --name "{{ app_name }}" -- start
+      args:
+        chdir: '{{ app_dir }}'
+      environment:
+        PORT: '{{ app_port }}'
+      become_user: mathis.oudin-gcp
+
+    - name: Save PM2 process list
+      command: pm2 save
+      become_user: mathis.oudin-gcp
+
+    - name: Configure PM2 to start on boot
+      command: pm2 startup systemd -u mathis.oudin-gcp --hp /home/mathis.oudin-gcp
+      become_user: mathis.oudin-gcp
+      ignore_errors: yes
+
+    - name: Verify PM2 status
+      command: pm2 list
+      become_user: mathis.oudin-gcp
+      register: pm2_status
