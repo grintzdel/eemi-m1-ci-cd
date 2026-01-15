@@ -1,8 +1,13 @@
-name: Lint & Format Check
+name: CI
 
 on:
   push:
+    branches:
+      - '**'
   pull_request:
+    branches:
+      - '**'
+  workflow_dispatch:
 
 jobs:
   lint:
@@ -31,3 +36,6 @@ jobs:
 
       - name: Check Prettier formatting
         run: pnpm run pretty:check
+
+      - name: Run tests
+        run: pnpm run test:run
