@@ -93,11 +93,25 @@ const Menu: React.FC = (): React.JSX.Element => {
   )
 }
 
+const SearchBar: React.FC = (): React.JSX.Element => {
+  return (
+    <div className="flex w-full flex-row items-center gap-3 rounded-full bg-[#F0F0F0] px-4 py-3">
+      <Image src="/icon-search.svg" alt="Search something" width={24} height={24} />
+      <input
+        type="text"
+        placeholder="Search for products..."
+        className="w-full bg-transparent outline-none focus:ring-0 focus:outline-none"
+      />
+    </div>
+  )
+}
+
 const NavBar: React.FC = (): React.JSX.Element => {
   return (
     <div className="flex flex-row justify-between gap-10 bg-white px-25 py-6">
       <Logo />
       <Menu />
+      <SearchBar />
     </div>
   )
 }
