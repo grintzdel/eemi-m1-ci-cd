@@ -20,11 +20,7 @@ const SignUpBanner: React.FC = (): React.JSX.Element | null => {
           Sign Up Now
         </Link>
       </div>
-      <button
-        onClick={() => setIsVisible(false)}
-        className="cursor-pointer justify-self-end"
-        aria-label="Close banner"
-      >
+      <button onClick={() => setIsVisible(false)} className="cursor-pointer justify-self-end" aria-label="Close banner">
         <Image src="/icon-cross.svg" alt="Close" width={14} height={14} />
       </button>
     </div>
