@@ -27,11 +27,86 @@ const SignUpBanner: React.FC = (): React.JSX.Element | null => {
   )
 }
 
+type LinkItemProps = {
+  href: string
+  children: Readonly<React.ReactNode>
+}
+
+const LinkItem: React.FC<LinkItemProps> = ({ href, children }: LinkItemProps): React.JSX.Element => {
+  return (
+    <li>
+      <Link href={href} className="cursor-pointer capitalize">
+        {children}
+      </Link>
+    </li>
+  )
+}
+
+type LinkItemDetailsProps = {
+  title: string
+  children: Readonly<React.ReactNode>
+}
+
+const LinkItemDetails: React.FC<LinkItemDetailsProps> = ({
+  title,
+  children,
+}: LinkItemDetailsProps): React.JSX.Element => {
+  return (
+    <li className="relative">
+      <details className="group">
+        <summary className="flex cursor-pointer list-none items-center gap-1 [&::-webkit-details-marker]:hidden">
+          {title}
+          <Image
+            src="/icon-dropdown.svg"
+            alt=""
+            width={12}
+            height={7}
+            className="transition-transform group-open:rotate-180"
+          />
+        </summary>
+        <ul className="absolute top-full left-0 mt-3 flex flex-col gap-2 rounded-lg bg-white p-3 shadow-2xl">
+          {children}
+        </ul>
+      </details>
+    </li>
+  )
+}
+
+const Logo: React.FC = (): React.JSX.Element => {
+  return <Image src="/header-logo.svg" alt="Shop.co logo" width={160} height={22} />
+}
+
+const Menu: React.FC = (): React.JSX.Element => {
+  return (
+    <nav>
+      <ul className="flex flex-row gap-6">
+        <LinkItemDetails title="Shop">
+          <LinkItem href="/men">Men</LinkItem>
+          <LinkItem href="/women">Women</LinkItem>
+          <LinkItem href="/kids">Kids</LinkItem>
+        </LinkItemDetails>
+        <LinkItem href="/on-sale">On Sale</LinkItem>
+        <LinkItem href="/new-arrivals">New Arrivals</LinkItem>
+        <LinkItem href="/brands">Brands</LinkItem>
+      </ul>
+    </nav>
+  )
+}
+
+const NavBar: React.FC = (): React.JSX.Element => {
+  return (
+    <div className="flex flex-row justify-between gap-10 bg-white px-25 py-6">
+      <Logo />
+      <Menu />
+    </div>
+  )
+}
+
 export const Header: React.FC = (): React.JSX.Element => {
   return (
-    <header>
+    <header className="flex flex-col">
       <SignUpBanner />
-      <h1>Hello from the header</h1>
+      <NavBar />
     </header>
   )
 }
