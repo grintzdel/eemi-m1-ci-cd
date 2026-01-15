@@ -35,7 +35,7 @@ type LinkItemProps = {
 const LinkItem: React.FC<LinkItemProps> = ({ href, children }: LinkItemProps): React.JSX.Element => {
   return (
     <li>
-      <Link href={href} className="cursor-pointer capitalize">
+      <Link href={href} className="cursor-pointer whitespace-nowrap capitalize">
         {children}
       </Link>
     </li>
@@ -78,7 +78,7 @@ const Logo: React.FC = (): React.JSX.Element => {
 
 const Menu: React.FC = (): React.JSX.Element => {
   return (
-    <nav>
+    <nav className="content-center">
       <ul className="flex flex-row gap-6">
         <LinkItemDetails title="Shop">
           <LinkItem href="/men">Men</LinkItem>
