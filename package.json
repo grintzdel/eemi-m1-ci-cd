@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "pretty": "prettier --write .",
     "pretty:check": "prettier --check .",
+    "start": "next start",
     "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "next": "16.1.2",
