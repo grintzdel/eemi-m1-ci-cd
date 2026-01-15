@@ -73,12 +73,16 @@ const LinkItemDetails: React.FC<LinkItemDetailsProps> = ({
 }
 
 const Logo: React.FC = (): React.JSX.Element => {
-  return <Image src="/header-logo.svg" alt="Shop.co logo" width={160} height={22} />
+  return (
+    <div className="shrink-0 content-center">
+      <Image src="/header-logo.svg" alt="Shop.co logo" width={160} height={22} />
+    </div>
+  )
 }
 
 const Menu: React.FC = (): React.JSX.Element => {
   return (
-    <nav className="content-center">
+    <nav className="shrink-0 content-center">
       <ul className="flex flex-row gap-6">
         <LinkItemDetails title="Shop">
           <LinkItem href="/men">Men</LinkItem>
@@ -95,7 +99,7 @@ const Menu: React.FC = (): React.JSX.Element => {
 
 const SearchBar: React.FC = (): React.JSX.Element => {
   return (
-    <div className="flex w-full flex-row items-center gap-3 rounded-full bg-[#F0F0F0] px-4 py-3">
+    <div className="flex flex-1 flex-row items-center gap-3 rounded-full bg-[#F0F0F0] px-4 py-3">
       <Image src="/icon-search.svg" alt="Search something" width={24} height={24} />
       <input
         type="text"
@@ -106,12 +110,26 @@ const SearchBar: React.FC = (): React.JSX.Element => {
   )
 }
 
+const NavActions: React.FC = (): React.JSX.Element => {
+  return (
+    <div className="flex shrink-0 flex-row items-center gap-3.5">
+      <Link href="/cart">
+        <Image src="/icon-cart.svg" alt="Cart" width={24} height={24} className="cursor-pointer" />
+      </Link>
+      <Link href="/account">
+        <Image src="/icon-account.svg" alt="Account" width={24} height={24} className="cursor-pointer" />
+      </Link>
+    </div>
+  )
+}
+
 const NavBar: React.FC = (): React.JSX.Element => {
   return (
     <div className="flex flex-row justify-between gap-10 bg-white px-25 py-6">
       <Logo />
       <Menu />
       <SearchBar />
+      <NavActions />
     </div>
   )
 }
