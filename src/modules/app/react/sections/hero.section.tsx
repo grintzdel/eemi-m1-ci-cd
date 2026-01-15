@@ -18,7 +18,7 @@ const Stats: React.FC = (): React.JSX.Element => {
 
 export const HeroSection: React.FC = (): React.JSX.Element => {
   return (
-    <section className="md:h-vh h-dvh bg-[#F2F0F1]">
+    <section className="bg-[#F2F0F1]">
       <div className="flex flex-row gap-3">
         <div className="flex flex-col gap-12 p-25">
           <div className="flex flex-col gap-8">
