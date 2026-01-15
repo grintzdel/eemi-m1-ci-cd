@@ -27,11 +27,118 @@ const SignUpBanner: React.FC = (): React.JSX.Element | null => {
   )
 }
 
+type LinkItemProps = {
+  href: string
+  children: Readonly<React.ReactNode>
+}
+
+const LinkItem: React.FC<LinkItemProps> = ({ href, children }: LinkItemProps): React.JSX.Element => {
+  return (
+    <li>
+      <Link href={href} className="cursor-pointer whitespace-nowrap capitalize">
+        {children}
+      </Link>
+    </li>
+  )
+}
+
+type LinkItemDetailsProps = {
+  title: string
+  children: Readonly<React.ReactNode>
+}
+
+const LinkItemDetails: React.FC<LinkItemDetailsProps> = ({
+  title,
+  children,
+}: LinkItemDetailsProps): React.JSX.Element => {
+  return (
+    <li className="relative">
+      <details className="group">
+        <summary className="flex cursor-pointer list-none items-center gap-1 [&::-webkit-details-marker]:hidden">
+          {title}
+          <Image
+            src="/icon-dropdown.svg"
+            alt=""
+            width={12}
+            height={7}
+            className="transition-transform group-open:rotate-180"
+          />
+        </summary>
+        <ul className="absolute top-full left-0 mt-3 flex flex-col gap-2 rounded-lg bg-white p-3 shadow-2xl">
+          {children}
+        </ul>
+      </details>
+    </li>
+  )
+}
+
+const Logo: React.FC = (): React.JSX.Element => {
+  return (
+    <div className="shrink-0 content-center">
+      <Image src="/header-logo.svg" alt="Shop.co logo" width={160} height={22} />
+    </div>
+  )
+}
+
+const Menu: React.FC = (): React.JSX.Element => {
+  return (
+    <nav className="shrink-0 content-center">
+      <ul className="flex flex-row gap-6">
+        <LinkItemDetails title="Shop">
+          <LinkItem href="/men">Men</LinkItem>
+          <LinkItem href="/women">Women</LinkItem>
+          <LinkItem href="/kids">Kids</LinkItem>
+        </LinkItemDetails>
+        <LinkItem href="/on-sale">On Sale</LinkItem>
+        <LinkItem href="/new-arrivals">New Arrivals</LinkItem>
+        <LinkItem href="/brands">Brands</LinkItem>
+      </ul>
+    </nav>
+  )
+}
+
+const SearchBar: React.FC = (): React.JSX.Element => {
+  return (
+    <div className="flex flex-1 flex-row items-center gap-3 rounded-full bg-[#F0F0F0] px-4 py-3">
+      <Image src="/icon-search.svg" alt="Search something" width={24} height={24} />
+      <input
+        type="text"
+        placeholder="Search for products..."
+        className="w-full bg-transparent outline-none focus:ring-0 focus:outline-none"
+      />
+    </div>
+  )
+}
+
+const NavActions: React.FC = (): React.JSX.Element => {
+  return (
+    <div className="flex shrink-0 flex-row items-center gap-3.5">
+      <Link href="/cart">
+        <Image src="/icon-cart.svg" alt="Cart" width={24} height={24} className="cursor-pointer" />
+      </Link>
+      <Link href="/account">
+        <Image src="/icon-account.svg" alt="Account" width={24} height={24} className="cursor-pointer" />
+      </Link>
+    </div>
+  )
+}
+
+const NavBar: React.FC = (): React.JSX.Element => {
+  return (
+    <div className="flex flex-row justify-between gap-10 bg-white px-25 py-6">
+      <Logo />
+      <Menu />
+      <SearchBar />
+      <NavActions />
+    </div>
+  )
+}
+
 export const Header: React.FC = (): React.JSX.Element => {
   return (
-    <header>
+    <header className="flex flex-col">
       <SignUpBanner />
-      <h1>Hello from the header</h1>
+      <NavBar />
     </header>
   )
 }
