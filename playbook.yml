@@ -1,0 +1,55 @@
+- hosts: servers
+  become: yes
+  vars:
+    deploy_user: mathis.oudin-gcp
+    app_dir: /home/mathis.oudin-gcp/eemi-m1-ci-cd
+
+  tasks:
+    - name: Install dependencies
+      apt:
+        name: [curl, rsync]
+        state: present
+        update_cache: yes
+
+    - name: Install Node.js 20
+      shell: curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
+      args:
+        creates: /usr/bin/node
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+
+    - name: Clone or update Git repository
+      git:
+        repo: 'https://github.com/grintzdel/eemi-m1-ci-cd.git'
+        dest: '{{ app_dir }}'
+        version: main
+        update: yes
+        force: yes
+      become_user: '{{ deploy_user }}'
+
+    - name: Install dependencies
+      shell: pnpm install
+      args:
+        chdir: '{{ app_dir }}'
+      become_user: '{{ deploy_user }}'
+
+    - name: Kill Node.js processes on port 3002
+      shell: |
+        lsof -ti:3002 | xargs kill -9 || true
+      become: yes
+      ignore_errors: yes
+
+    - name: Build
+      shell: pnpm run build
+      args:
+        chdir: '{{ app_dir }}'
+      become_user: '{{ deploy_user }}'
+
+    - name: Start app
+      shell: nohup pnpm run start > /dev/null 2>&1 &
+      args:
+        chdir: '{{ app_dir }}'
+      become_user: '{{ deploy_user }}'
