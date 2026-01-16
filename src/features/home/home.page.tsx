@@ -1,3 +1,4 @@
+import { BrowseSection } from '@/modules/app/react/sections/browse.section'
 import { HeroSection } from '@/modules/app/react/sections/hero.section'
 import { MarqueeSection } from '@/modules/app/react/sections/marquee.section'
 import { NewArrivalsSection } from '@/modules/app/react/sections/new-arrivals.section'
@@ -11,6 +12,7 @@ export default function HomePage(): React.JSX.Element {
       <MarqueeSection />
       <NewArrivalsSection />
       <TopSellingSection />
+      <BrowseSection />
     </React.Fragment>
   )
 }
