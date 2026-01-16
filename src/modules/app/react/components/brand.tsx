@@ -13,7 +13,7 @@ export const Brand: React.FC<BrandProps> = ({ brandName, logoUrl }: BrandProps):
       alt={brandName}
       width={165}
       height={35}
-      className="h-auto max-h-8.75 w-full max-w-41.25 shrink-0 object-contain"
+      className="h-auto max-h-5 w-full max-w-20 shrink-0 object-contain md:max-h-8.75 md:max-w-41.25"
     />
   )
 }

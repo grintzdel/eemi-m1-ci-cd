@@ -62,8 +62,8 @@ const reviews: ReviewData[] = [
 
 export const ReviewSection: React.FC = (): React.JSX.Element => {
   return (
-    <section className="flex flex-col gap-10 py-25">
-      <h3 className="px-25 text-[48px] font-bold uppercase">OUR HAPPY CUSTOMERS</h3>
+    <section className="flex flex-col gap-6 py-12 md:gap-10 md:py-25">
+      <h3 className="px-4 text-2xl font-bold uppercase md:px-25 md:text-[48px]">OUR HAPPY CUSTOMERS</h3>
       <Slider>
         {reviews.map((review, index) => (
           <Review key={index} name={review.name} comment={review.comment} rating={review.rating} />

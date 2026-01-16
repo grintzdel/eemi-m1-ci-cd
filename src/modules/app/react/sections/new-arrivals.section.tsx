@@ -53,9 +53,9 @@ const products: ProductData[] = [
 
 export const NewArrivalsSection: React.FC = (): React.JSX.Element => {
   return (
-    <section className="container mx-auto flex flex-col justify-center gap-13.75 py-25">
-      <h2 className="text-center text-5xl font-bold text-black uppercase">New Arrivals</h2>
-      <div className="flex flex-col justify-between gap-5 md:flex-row">
+    <section className="container mx-auto flex flex-col justify-center gap-6 px-4 py-12 md:gap-13.75 md:px-0 md:py-25">
+      <h2 className="text-center text-2xl font-bold text-black uppercase md:text-5xl">New Arrivals</h2>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
         {products.map((product) => (
           <Product
             key={product.id}

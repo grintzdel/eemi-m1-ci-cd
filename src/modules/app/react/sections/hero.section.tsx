@@ -6,11 +6,11 @@ import React from 'react'
 
 const Stats: React.FC = (): React.JSX.Element => {
   return (
-    <div className="flex flex-col gap-8 md:flex-row">
+    <div className="flex flex-wrap justify-center gap-4 md:flex-nowrap md:justify-start md:gap-8">
       <Stat value="200" label="International Brands" symbol="+" />
-      <Divider />
+      <Divider className="hidden md:block" />
       <Stat value="2,000" label="High-Quality Products" symbol="+" />
-      <Divider />
+      <Divider className="hidden md:block" />
       <Stat value="30,000" label="Happy Customers" symbol="+" />
     </div>
   )
@@ -19,15 +19,17 @@ const Stats: React.FC = (): React.JSX.Element => {
 export const HeroSection: React.FC = (): React.JSX.Element => {
   return (
     <section className="bg-[#F2F0F1]">
-      <div className="flex flex-row gap-3">
-        <div className="flex flex-col gap-12 p-25">
-          <div className="flex flex-col gap-8">
-            <h1 className="text-[64px] font-bold uppercase">Find clothes that matches your style</h1>
-            <p className="opacity-60">
+      <div className="flex flex-col lg:flex-row lg:gap-3">
+        <div className="flex flex-col gap-6 p-6 md:gap-12 md:p-12 lg:p-25">
+          <div className="flex flex-col gap-4 md:gap-8">
+            <h1 className="text-3xl font-bold uppercase md:text-5xl lg:text-[64px]">
+              Find clothes that matches your style
+            </h1>
+            <p className="text-sm opacity-60 md:text-base">
               Browse through our diverse range of meticulously crafted garments, designed to bring out your
               individuality and cater to your sense of style.
             </p>
-            <Button href="/" text="Shop Now" />
+            <Button href="/" text="Shop Now" fullWidth className="md:w-fit" />
           </div>
           <Stats />
         </div>
@@ -36,7 +38,7 @@ export const HeroSection: React.FC = (): React.JSX.Element => {
           alt="Hero Image"
           width={500}
           height={500}
-          className="h-auto w-full object-contain"
+          className="h-auto w-full object-cover lg:max-w-[50%]"
         />
       </div>
     </section>

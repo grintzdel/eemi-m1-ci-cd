@@ -32,12 +32,12 @@ const NewsletterInput: React.FC = (): React.JSX.Element => {
 
 export const NewsletterSection: React.FC = (): React.JSX.Element => {
   return (
-    <section className="relative z-10 mx-25 -mb-21.75 rounded-[20px] bg-black px-16 py-9">
-      <div className="flex items-center justify-between">
-        <h3 className="max-w-137.5 text-[40px] leading-11.25 font-bold text-white uppercase">
+    <section className="relative z-10 mx-4 -mb-20 rounded-[12px] bg-black px-4 py-6 md:mx-25 md:-mb-21.75 md:rounded-[20px] md:px-16 md:py-9">
+      <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-0">
+        <h3 className="text-center text-xl leading-tight font-bold text-white uppercase md:max-w-137.5 md:text-left md:text-[40px] md:leading-11.25">
           STAY UP TO DATE ABOUT OUR LATEST OFFERS
         </h3>
-        <div className="flex w-87.5 flex-col gap-3.5">
+        <div className="flex w-full flex-col gap-3 md:w-87.5 md:gap-3.5">
           <NewsletterInput />
           <Button href="#" text="Subscribe to Newsletter" variant="secondary" fullWidth />
         </div>
