@@ -1,8 +1,7 @@
-import React from 'react'
-
+import { Product } from '@/modules/app/react/components/product'
+import { CurrencySymbols } from '@/modules/app/react/utils/price.utils'
 import { Button } from '@/ui/button'
-import { Product } from '../components/product'
-import { CurrencySymbols } from '../utils/price.utils'
+import React from 'react'
 
 type ProductData = {
   id: number
@@ -17,44 +16,42 @@ type ProductData = {
 const products: ProductData[] = [
   {
     id: 1,
-    name: 'T-shirt With Tape Details',
-    rating: 4.5,
-    price: 120,
+    name: 'Vertical Striped Shirt',
+    rating: 5.0,
+    price: 212,
+    discountPrice: 232,
     currency: '$',
-    imageUrl: '/image-product-1.png',
+    imageUrl: '/image-product-5.png',
   },
   {
     id: 2,
-    name: 'Skinny Fit Jeans',
-    rating: 3.5,
-    price: 260,
-    discountPrice: 240,
+    name: 'Courage Grapgic T-shirt',
+    rating: 4.0,
+    price: 145,
     currency: '$',
-    imageUrl: '/image-product-2.png',
+    imageUrl: '/image-product-6.png',
   },
   {
     id: 3,
-    name: 'Checkered Shirt',
-    rating: 4.5,
-    price: 180,
+    name: 'Loose Fit Bermuada Shorts',
+    rating: 3.0,
+    price: 80,
     currency: '$',
-    imageUrl: '/image-product-3.png',
+    imageUrl: '/image-product-7.png',
   },
   {
     id: 4,
-    name: 'Sleeve Striped T-shirt',
-    rating: 4,
-    price: 160,
-    discountPrice: 130,
+    name: 'Faded Skinny Jeans',
+    rating: 4.5,
+    price: 210,
     currency: '$',
-    imageUrl: '/image-product-4.png',
+    imageUrl: '/image-product-8.png',
   },
 ]
-
-export const NewArrivalsSection: React.FC = (): React.JSX.Element => {
+export const TopSellingSection: React.FC = (): React.JSX.Element => {
   return (
     <section className="container mx-auto flex flex-col justify-center gap-13.75 py-25">
-      <h2 className="text-center text-5xl font-bold text-black uppercase">New Arrivals</h2>
+      <h2 className="text-center text-5xl font-bold text-black uppercase">Top Selling</h2>
       <div className="flex flex-col justify-between gap-5 md:flex-row">
         {products.map((product) => (
           <Product
