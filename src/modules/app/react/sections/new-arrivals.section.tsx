@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Button } from '@/ui/button'
 import { Product } from '../components/product'
 import { CurrencySymbols } from '../utils/price.utils'
 
@@ -66,6 +67,9 @@ export const NewArrivalsSection: React.FC = (): React.JSX.Element => {
             imageUrl={product.imageUrl}
           />
         ))}
+      </div>
+      <div className="flex flex-row justify-center">
+        <Button text="View All" href="/" variant="outline" />
       </div>
     </section>
   )
