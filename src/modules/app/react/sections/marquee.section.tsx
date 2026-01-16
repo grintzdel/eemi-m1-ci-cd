@@ -11,7 +11,7 @@ const brands = [
 
 const BrandList: React.FC = (): React.JSX.Element => {
   return (
-    <div className="flex shrink-0 gap-24 pr-24">
+    <div className="flex shrink-0 gap-8 pr-8 md:gap-24 md:pr-24">
       {brands.map((brand) => (
         <Brand key={brand.brandName} {...brand} />
       ))}
@@ -21,7 +21,7 @@ const BrandList: React.FC = (): React.JSX.Element => {
 
 export const MarqueeSection: React.FC = (): React.JSX.Element => {
   return (
-    <section className="overflow-hidden bg-black py-11">
+    <section className="overflow-hidden bg-black py-6 md:py-11">
       <div className="animate-marquee flex">
         <BrandList />
         <BrandList />

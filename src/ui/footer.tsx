@@ -12,12 +12,12 @@ type FooterColumnProps = {
 
 const FooterColumn: React.FC<FooterColumnProps> = ({ title, links }: FooterColumnProps): React.JSX.Element => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4 md:gap-6">
       <h4 className="text-sm font-medium tracking-[3px] text-black">{title}</h4>
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-3 md:gap-4">
         {links.map((link, index) => (
           <li key={index}>
-            <a href={link.href} className="text-base text-black/60 hover:text-black">
+            <a href={link.href} className="text-sm text-black/60 hover:text-black md:text-base">
               {link.label}
             </a>
           </li>
@@ -72,8 +72,8 @@ const SocialIcons: React.FC = (): React.JSX.Element => {
 
 const FooterBrand: React.FC = (): React.JSX.Element => {
   return (
-    <div className="flex max-w-[250px] flex-col gap-6">
-      <h2 className="font-integral text-[28px] font-bold">SHOP.CO</h2>
+    <div className="flex max-w-full flex-col gap-4 md:max-w-[250px] md:gap-6">
+      <h2 className="font-integral text-[24px] font-bold md:text-[28px]">SHOP.CO</h2>
       <p className="text-sm leading-[22px] text-black/60">
         We have clothes that suits your style and which you&apos;re proud to wear. From women to men.
       </p>
@@ -84,7 +84,7 @@ const FooterBrand: React.FC = (): React.JSX.Element => {
 
 const PaymentBadges: React.FC = (): React.JSX.Element => {
   return (
-    <div className="flex flex-row gap-3">
+    <div className="flex flex-row flex-wrap justify-center gap-2 md:justify-end md:gap-3">
       {/* Visa */}
       <div className="flex h-[30px] w-[46px] items-center justify-center rounded-[5px] bg-white">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-[10px] w-[32px]" viewBox="0 0 750 471">
@@ -191,8 +191,8 @@ const PaymentBadges: React.FC = (): React.JSX.Element => {
 
 const FooterBottom: React.FC = (): React.JSX.Element => {
   return (
-    <div className="flex flex-row items-center justify-between border-t border-black/10 py-6">
-      <p className="text-sm text-black/60">Shop.co © 2000-2023, All Rights Reserved</p>
+    <div className="flex flex-col-reverse items-center justify-between gap-4 border-t border-black/10 py-4 md:flex-row md:gap-0 md:py-6">
+      <p className="text-xs text-black/60 md:text-sm">Shop.co © 2000-2023, All Rights Reserved</p>
       <PaymentBadges />
     </div>
   )
@@ -228,13 +228,15 @@ const resourcesLinks: FooterLinkItem[] = [
 
 export const Footer: React.FC = (): React.JSX.Element => {
   return (
-    <footer className="bg-[#F0F0F0] px-25 pt-[140px]">
-      <div className="flex flex-row justify-between pb-12">
+    <footer className="bg-[#F0F0F0] px-4 pt-24 md:px-25 md:pt-[140px]">
+      <div className="flex flex-col gap-6 pb-8 md:flex-row md:justify-between md:gap-0 md:pb-12">
         <FooterBrand />
-        <FooterColumn title="COMPANY" links={companyLinks} />
-        <FooterColumn title="HELP" links={helpLinks} />
-        <FooterColumn title="FAQ" links={faqLinks} />
-        <FooterColumn title="RESOURCES" links={resourcesLinks} />
+        <div className="grid grid-cols-2 gap-6 md:flex md:gap-12 lg:gap-20">
+          <FooterColumn title="COMPANY" links={companyLinks} />
+          <FooterColumn title="HELP" links={helpLinks} />
+          <FooterColumn title="FAQ" links={faqLinks} />
+          <FooterColumn title="RESOURCES" links={resourcesLinks} />
+        </div>
       </div>
       <FooterBottom />
     </footer>

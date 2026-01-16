@@ -16,9 +16,9 @@ const bentoItems: BentoItemData[] = [
 
 export const BrowseSection: React.FC = (): React.JSX.Element => {
   return (
-    <section className="flex justify-center px-25">
-      <div className="flex w-full flex-col justify-center gap-16 rounded-[40px] bg-[#F0F0F0] px-16 py-17.5">
-        <h3 className="text-center text-[48px] font-bold uppercase">Browse By Dress Style</h3>
+    <section className="flex justify-center px-4 md:px-25">
+      <div className="flex w-full flex-col justify-center gap-6 rounded-[20px] bg-[#F0F0F0] px-4 py-6 md:gap-16 md:rounded-[40px] md:px-16 md:py-17.5">
+        <h3 className="text-center text-xl font-bold uppercase md:text-[48px]">Browse By Dress Style</h3>
         <Bento items={bentoItems} />
       </div>
     </section>
