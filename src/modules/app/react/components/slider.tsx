@@ -73,18 +73,18 @@ export const Slider: React.FC<SliderProps> = ({ children, scrollAmount = 420 }: 
   }
 
   const SliderView = (
-    <div className="relative w-full">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-25 mask-[linear-gradient(to_right,black,transparent)] backdrop-blur-sm" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-25 mask-[linear-gradient(to_left,black,transparent)] backdrop-blur-sm" />
-      <div ref={carouselRef} className="scrollbar-hide flex flex-row gap-5 overflow-x-auto py-2">
+    <div className="relative w-full overflow-hidden">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 mask-[linear-gradient(to_right,black,transparent)] backdrop-blur-sm md:w-25" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 mask-[linear-gradient(to_left,black,transparent)] backdrop-blur-sm md:w-25" />
+      <div ref={carouselRef} className="scrollbar-hide flex flex-row gap-3 overflow-x-scroll py-2 md:gap-5">
         {children}
       </div>
     </div>
   )
 
   return (
-    <div className="flex flex-col gap-10">
-      <div className="flex justify-end px-25">
+    <div className="flex flex-col gap-6 md:gap-10">
+      <div className="flex justify-end px-4 md:px-25">
         <SliderControls onPrevious={() => scroll('left')} onNext={() => scroll('right')} />
       </div>
       {SliderView}

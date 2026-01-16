@@ -58,24 +58,18 @@ export const Product: React.FC<ProductProps> = ({
     : 0
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-center rounded-[20px] bg-[#F0EEED] p-4">
-        <Image
-          alt={name}
-          src={imageUrl}
-          width={225}
-          height={225}
-          className="mx-auto h-56.25 w-56.25 max-w-56.25 object-contain"
-        />
+    <div className="flex flex-col gap-2 md:gap-4">
+      <div className="relative aspect-square overflow-hidden rounded-[12px] bg-[#F0EEED] md:rounded-[20px]">
+        <Image alt={name} src={imageUrl} fill className="object-contain p-4" />
       </div>
-      <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold">{name}</h3>
+      <div className="flex flex-col gap-1 md:gap-2">
+        <h3 className="text-sm font-bold md:text-xl">{name}</h3>
         <ReviewStars rating={rating} />
-        <div className="flex flex-row items-center gap-2.5">
-          <span className="text-xl font-bold">{formatPrice({ price: displayPrice, currency })}</span>
+        <div className="flex flex-row flex-wrap items-center gap-1 md:gap-2.5">
+          <span className="text-base font-bold md:text-xl">{formatPrice({ price: displayPrice, currency })}</span>
           {hasDiscount && (
             <>
-              <span className="text-xl text-gray-400 line-through">{formatPrice({ price, currency })}</span>
+              <span className="text-sm text-gray-400 line-through md:text-xl">{formatPrice({ price, currency })}</span>
               <DiscountBadge discountPercentage={discountPercentage} />
             </>
           )}

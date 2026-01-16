@@ -12,9 +12,9 @@ const SignUpBanner: React.FC = (): React.JSX.Element | null => {
   }
 
   return (
-    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 bg-black px-25 py-2.25">
+    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 bg-black px-4 py-2 md:gap-4 md:px-25 md:py-2.25">
       <div></div>
-      <div className="flex flex-col justify-center gap-1 text-center text-sm text-white md:flex-row">
+      <div className="flex flex-col justify-center gap-1 text-center text-xs text-white md:flex-row md:text-sm">
         <p>Sign up and get 20% off to your first order.</p>
         <Link href={'/'} className="font-bold capitalize underline">
           Sign Up Now
@@ -82,7 +82,7 @@ const Logo: React.FC = (): React.JSX.Element => {
 
 const Menu: React.FC = (): React.JSX.Element => {
   return (
-    <nav className="shrink-0 content-center">
+    <nav className="hidden shrink-0 content-center lg:block">
       <ul className="flex flex-row gap-6">
         <LinkItemDetails title="Shop">
           <LinkItem href="/men">Men</LinkItem>
@@ -99,7 +99,7 @@ const Menu: React.FC = (): React.JSX.Element => {
 
 const SearchBar: React.FC = (): React.JSX.Element => {
   return (
-    <div className="flex flex-1 flex-row items-center gap-3 rounded-full bg-[#F0F0F0] px-4 py-3">
+    <div className="hidden flex-1 flex-row items-center gap-3 rounded-full bg-[#F0F0F0] px-4 py-3 lg:flex">
       <Image src="/icon-search.svg" alt="Search something" width={24} height={24} />
       <input
         type="text"
@@ -110,9 +110,28 @@ const SearchBar: React.FC = (): React.JSX.Element => {
   )
 }
 
+const MobileMenuButton: React.FC = (): React.JSX.Element => {
+  return (
+    <button className="flex items-center justify-center lg:hidden" aria-label="Open menu">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  )
+}
+
+const MobileSearchButton: React.FC = (): React.JSX.Element => {
+  return (
+    <button className="flex items-center justify-center lg:hidden" aria-label="Search">
+      <Image src="/icon-search.svg" alt="Search" width={24} height={24} />
+    </button>
+  )
+}
+
 const NavActions: React.FC = (): React.JSX.Element => {
   return (
-    <div className="flex shrink-0 flex-row items-center gap-3.5">
+    <div className="flex shrink-0 flex-row items-center gap-3">
+      <MobileSearchButton />
       <Link href="/cart">
         <Image src="/icon-cart.svg" alt="Cart" width={24} height={24} className="cursor-pointer" />
       </Link>
@@ -125,7 +144,8 @@ const NavActions: React.FC = (): React.JSX.Element => {
 
 const NavBar: React.FC = (): React.JSX.Element => {
   return (
-    <div className="flex flex-row justify-between gap-10 bg-white px-25 py-6">
+    <div className="flex flex-row items-center justify-between gap-4 bg-white px-4 py-4 md:px-25 md:py-6 lg:gap-10">
+      <MobileMenuButton />
       <Logo />
       <Menu />
       <SearchBar />
